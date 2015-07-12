@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tweeter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<header>
+    <span id="logo"><%= link_to 'Tweeter', root_path %></span>
+    <nav>
+    <% if user_signed_in? %>
+        Hello <%= current_user.email %> |
+        <%= link_to 'New Chirp', new_chirp_path %> |
+        <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
+        <% else %>
+        <%= link_to 'Sign In', new_user_session_path %> |
+        <%= link_to 'Sign Up', new_user_registration_path %>
+    <% end %>
+    </nav>
+</header>
+<main>
+    <%= yield %>
+</main>
+</body>
+</html>
